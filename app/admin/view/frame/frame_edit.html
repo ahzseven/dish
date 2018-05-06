@@ -1,0 +1,51 @@
+<form action="{:url()}" method="post" class="form_single">
+  <div class="box">
+    <div class="box-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>名称</label>
+            <span>（组织架构名称）</span>
+            <input class="form-control" name="name" placeholder="请输入组织架构名称" value="{$info['name']|default=''}" type="text">
+          </div>
+        </div>
+
+
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>上级部门</label>
+            <span>（所属的上级菜单）</span>
+            <select name="pid" class="form-control">
+              <option value="0">顶级部门</option>
+
+              {volist name='frame_list' id='vo'}
+              <option value="{$vo.id}">{$vo.name}</option>
+              {/volist}
+
+            </select>
+          </div>
+        </div>
+
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>描述</label>
+            <span>（部门架构描述）</span>
+            <textarea class="form-control" name="describe" rows="3" placeholder="请输入部门架构描述">{$info['describe']|default=''}</textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box-footer">
+
+      <input type="hidden" name="id" value="{$info['id']|default='0'}"/>
+
+      {include file="layout/edit_btn_group"/}
+
+    </div>
+
+  </div>
+
+</form>

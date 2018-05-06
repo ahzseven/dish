@@ -1,0 +1,92 @@
+<link rel="stylesheet" href="__STATIC__/module/admin/css/member_add.css">
+<form action="{:url()}" method="post" class="form_single">
+    <div class="box">
+      <div class="box-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>用户名</label>
+              <span>（用户名会作为系统登录账户）</span>
+              <input class="form-control" name="username" placeholder="请输入登录账户" value="{$info['username']}" type="text">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>真实姓名</label>
+              <span>（用户姓名）</span>
+              <input class="form-control" name="nickname" placeholder="请输入真实姓名" value="{$info['nickname']}" type="text">
+            </div>
+          </div>
+ 
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>邮箱</label>
+              <span>（用户邮箱，用于找回密码等安全操作）</span>
+              <input class="form-control" name="email" placeholder="请输入邮箱" value="{$info['email']}" type="text">
+            </div>
+          </div>
+ 
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>手机</label>
+              <span>（手机号码，用于找回密码等安全操作）</span>
+              <input class="form-control" name="mobile" placeholder="请输入手机号码" value="{$info['mobile']}" type="text">
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>是否需要审核</label>
+              <!--<span>（若选择共享会员自己的会员则会继承给添加的会员）</span>-->
+              <div>
+                <label class="margin-r-5"><input type="radio" checked="checked" name="is_examine" value="1"> 是</label>
+                <label><input type="radio" name="is_examine" value="0"> 否</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>所属部门</label>
+              <select name="frame_id" class="form-control">
+                <option value="0">顶级部门</option>
+
+                {volist name='frame_list' id='vo'}
+                <option value="{$vo.id}" {notempty name="info['frame_id']"}{if condition="$info['frame_id'] eq $vo['id']"} selected="selected" {/if}{/notempty} >{$vo.name}</option>
+                {/volist}
+
+              </select>
+            </div>
+          </div>
+
+          <input id="auditor_id" name="auditor_id" value="{$info.auditor_id}" type="hidden">
+
+          <div class="col-md-6">
+            <div class="form-group" id="pText">
+              <label>审核人</label>
+              <span>（已指定审核人:）</span><span class="span">{$info.auditor_nickname}</span>
+
+              <div id="test-list">
+                <input id="search-auditor" class="form-control" placeholder="请输入姓名搜索" type="text" value="">
+                <ul class="list">
+
+                </ul>
+                <ul class="pagination">
+
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="box-footer">
+        
+        <input type="hidden" name="id" value="{$info['id']|default='0'}"/>
+          
+        {include file="layout/edit_btn_group"/}
+        
+      </div>
+    </div>
+</form>
+<script src="__STATIC__/module/admin/js/member_add.js"></script>

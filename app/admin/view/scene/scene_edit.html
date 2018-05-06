@@ -1,0 +1,155 @@
+<link rel="stylesheet" href="__STATIC__/module/admin/css/scene_add.css">
+<form action="{:url()}" method="post" class="form_single">
+    <div class="box">
+        <div class="box-body">
+            <div class="row">
+
+                <input id="customer_id" type="hidden" name="uid" value="{$info.uid}">
+
+                <div class="col-md-6">
+                    <div class="form-group" id="customertext">
+                        <label>客户姓名</label>
+                        <span>（已指定客户姓名）</span><span id="span-customer">{$info.customer_name}</span>
+
+                        <div id="customer-list">
+                            <input id="search-customer" class="form-control" placeholder="请输入客户姓名搜索" type="text" value="">
+                            <ul id="customerlist" class="list">
+
+                            </ul>
+                            <ul class="pagination">
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+                <input id="member_id" type="hidden" name="mid" value="{$info.mid}">
+
+                <div class="col-md-6">
+                    <div class="form-group" id="membertext">
+                        <label>业务员姓名</label>
+                        <span>（已指定业务员姓名）</span><span id="span-member">{$info.member_name}</span>
+
+                        <div id="member-list">
+                            <input id="search-member" class="form-control" placeholder="请输入业务员姓名搜索" type="text" value="">
+                            <ul id="ul-list" class="list">
+
+                            </ul>
+                            <ul class="pagination">
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>制作菜单名称</label>
+                        <span>（菜单名称）</span>
+                        <input class="form-control" name="name" placeholder="请输入制作菜单名称" type="text" value="{$info.name}">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>店名</label>
+                        <span>餐厅名称</span>
+                        <input class="form-control" name="title" placeholder="请输入餐厅名称" type="text" value="{$info.title}">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>模板类型</label>
+                        <span>（1.单页 / 2.多页）</span>
+                        <div>
+                            <label class="margin-r-5"><input id="single-page" type="radio"  name="type" value="1" {if condition="$info.type eq 1"} checked="checked" {/if} > 单页</label>
+                            <label><input id="multi-page" type="radio"  name="type"  value="2" {if condition="$info.type eq 2"} checked="checked" {/if}> 多页</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 single-page">
+                    <div class="form-group">
+                        <label>AB面内容是否相同</label>
+                        <span>（1.相同 / 2.不同）</span>
+                        <div>
+                            <label class="margin-r-5"><input type="radio" name="isab" value="1" {if condition="$info.type eq 2"} disabled="disabled" {/if}             {if condition="$info.isab eq 1"} checked="checked" {/if} > 是</label>
+                            <label><input type="radio"  name="isab"  value="2" {if condition="$info.isab eq 2"} checked="checked" {/if}  {if condition="$info.type eq 2"} disabled="disabled" {/if} > 否</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 multi-page">
+                    <div class="form-group">
+                        <label>材质类型</label>
+                        <span>（1.PVC / 2.皮质）</span>
+                        <div>
+                            <label class="margin-r-5"><input type="radio"  name="material" value="1" {if condition="$info.material eq 1"} checked="checked" {/if}
+                                {if condition="$info.type eq 1"} disabled="disabled" {/if} > PVC</label>
+                            <label><input type="radio"  name="material"  value="2" {if condition="$info.material eq 2"} checked="checked" {/if} {if condition="$info.type eq 1"} disabled="disabled" {/if} > 皮质</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>产品页面数量</label>
+                        <span>（填写菜单产品的页面数量）</span>
+                        <input class="form-control" name="pagecount" placeholder="请输入数字" type="text" value="{$info.pagecount}">
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>制作菜单数量</label>
+                        <span>（填写打印完整菜单产品的数量）</span>
+                        <input  id="form-control" class="form-control" name="num" placeholder="请输入数字" type="text" value="{$info.num}">
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>审核状态</label>
+                        <div>
+                            <label class="margin-r-5"><input type="radio" name="check" value="0" {if condition="$info.check eq 0"} checked="checked" {/if}> 待审核</label>
+                            <label><input type="radio" name="check" value="1" {if condition="$info.check eq 1"} checked="checked" {/if}> 审核通过</label>
+                            <label><input type="radio" name="check" value="2" {if condition="$info.check eq 2"} checked="checked" {/if}> 审核未通过</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>快递单号</label>
+                        <span>（物流快递单号）</span>
+                        <input  class="form-control" name="courier_number" placeholder="请输入快递单号" type="text" value="{$info.courier_number}">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>菜单制作样品图</label>
+                        <span class="">（请上传样品图片)支持多图上传</span>
+                        <br/>
+                        <!--<input type="file">-->
+                        {:widget('file/index', ['name' => 'drawing_id' , 'type' => 'img'])}
+                    </div>
+                </div>
+
+                <!--菜单id-->
+                <input type="hidden" name="id" value="{$info.id}">
+
+            </div>
+        </div>
+        <div class="box-footer">
+
+            {include file="layout/edit_btn_group"/}
+        </div>
+    </div>
+</form>
+<script src="__STATIC__/module/admin/js/scene_add.js"></script>

@@ -1,0 +1,46 @@
+<form action="{:url()}" method="post" class="form_single">
+    <div class="box">
+        <div class="box-body">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group" id="list">
+                        <label>菜单当前页面名称</label>
+                        <span>（填写当前页面的名称）</span>
+                        <input class="form-control" name="name" placeholder="请输入页面名称" type="text" value="{$info.name}">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>当前页面分类标题数量</label>
+                        <div>
+                            <label class="margin-r-5"><input type="radio" name="category_num" value="1" {if condition="$info.category_num eq 1"} checked="checked" {/if} > 一个标题分类</label>
+                            <label><input type="radio" name="category_num" value="2" {if condition="$info.category_num eq 2"} checked="checked" {/if} > 两个标题分类</label>
+                            <label><input type="radio" name="category_num" value="3" {if condition="$info.category_num eq 3"} checked="checked" {/if} > 三个标题分类</label>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!--<div class="col-md-6">-->
+                    <!--<div class="form-group">-->
+                        <!--<label>模板</label>-->
+                        <!--<span>填写模板</span>-->
+                        <!--<input class="form-control" name="tpl_id" placeholder="请输入菜品数量" type="text" >-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <input type="hidden" name="id" value="{$id}">
+                <input type="hidden" name="scene_id" value="{$info.scene_id}">
+                <input type="hidden" name="uid" value="{$info.uid}">
+
+            </div>
+        </div>
+        <div class="box-footer">
+
+            {include file="layout/edit_btn_group"/}
+        </div>
+    </div>
+</form>

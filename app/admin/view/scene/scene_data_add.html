@@ -1,0 +1,123 @@
+<form action="{:url()}" method="post" class="form_single">
+    <div class="box">
+        <div class="box-body">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>菜品名称</label>
+                        <span>（填写当前页面的菜品名称）</span>
+                        <input class="form-control" name="dish_name" placeholder="请填写当前页面的菜品名称" type="text" >
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>菜品价格(选填)</label>
+                        <span>（填写当前的菜品价格）</span>
+                        <input class="form-control" name="price_name" placeholder="请填写当前菜品的价格" type="text" >
+                    </div>
+                </div>
+
+
+                <!--<div class="col-md-6">-->
+                    <!--<div class="form-group" >-->
+                        <!--<label>样式</label>-->
+                        <!--<span>（填写当前页面的菜品样式）</span>-->
+                        <!--<input class="form-control" name="style_id" placeholder="请填写当前页面的样式" type="text" >-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="col-md-6">-->
+                    <!--<div class="form-group">-->
+                        <!--<label>模块名称</label>-->
+                        <!--<span>（模块名称）</span>-->
+                        <!--<input class="form-control" name="module_id" placeholder="请输入模块名称" type="text">-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="col-md-6">-->
+                    <!--<div class="form-group">-->
+                        <!--<label>当前页面模板配置</label>-->
+                        <!--<span>（模板配置）</span>-->
+                        <!--<input class="form-control" name="tpl_id" placeholder="请输入当前页面模板配置" type="text">-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>选择当前分类菜品类型</label>
+                        <div>
+                            <label><input type="radio" name="type" value="1"> 文字菜</label>
+                            <label><input type="radio" name="type" value="2"> 图文菜</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>选择当前分类菜品列数</label>
+                        <div>
+                            <label><input type="radio" name="list_num" value="1"> 一列</label>
+                            <label><input type="radio" name="list_num" value="2"> 二列</label>
+                            <label><input type="radio" name="list_num" value="3"> 三列</label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--<div class="col-md-6">-->
+                    <!--<div class="form-group">-->
+                        <!--<label>菜品内容</label>-->
+                        <!--<span>（填写内容）</span>-->
+                        <!--<input class="form-control" name="content" placeholder="请输入内容" type="text">-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <div id="img" class="col-md-6" style="display: none;">
+                    <div class="form-group">
+                        <label>上传菜品图片</label>
+                        <span class="">（请上传菜品图片）支持多图上传</span>
+                        <br/>
+                        <!--<input type="file">-->
+                        {:widget('file/index', ['name' => 'pic_id' , 'type' => 'img'])}
+                    </div>
+                </div>
+
+
+                <input type="hidden" name="scene_id" value="{$data.scene_id}">
+                <input type="hidden" name="page_id" value="{$data.page_id}">
+                <input type="hidden" name="pid" value="{$data.pid}">
+
+
+            </div>
+        </div>
+        <div class="box-footer">
+
+            {include file="layout/edit_btn_group"/}
+        </div>
+    </div>
+</form>
+<script>
+    $(function () {
+        // 选择单页->isab/选择多页->材质
+        $('input[type=radio][name=type]').change(function() {
+            if (this.value == '2') {
+                // console.log(2);
+                $('#img').show();
+//                $('input[type=text][name=pagecount]').attr("disabled", false);
+
+//                $('input[type=radio][name=isab]').attr("checked", false);
+//                $('input[type=radio][name=isab]').attr("disabled", "disabled");
+            }
+            else {
+
+                $('#img').hide();
+//                $('input[type=radio][name=isab]').attr("disabled", false);
+//                // console.log(1);
+//                $('input[type=radio][name=material]').attr("checked", false);
+//                $('input[type=radio][name=material]').attr("disabled","disabled");
+            }
+        })
+    })
+</script>

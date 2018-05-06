@@ -1,0 +1,11 @@
+.list{
+    list-style-type: none;
+    border: 1px solid silver;
+    padding: 0px;
+}
+.span{
+    font-weight: bold;
+}
+.list li{
+    padding: 6px 12px;
+}

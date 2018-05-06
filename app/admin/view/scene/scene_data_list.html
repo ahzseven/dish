@@ -1,0 +1,86 @@
+<div class="box">
+    <div class="box-header ">
+
+        <ob_link><a class="btn" href="{:url('sceneDataAdd', ['scene_id'=>$data['scene_id'], 'page_id'=>$data['page_id'], 'pid'=>$data['pid']])}"><i class="fa fa-plus"></i> 新 增菜品数据</a></ob_link>
+
+        <br/>
+    </div>
+
+    <!-- /.modal-content -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">添加图片</h4>
+                </div>
+                <div class="modal-body">
+                    <!--<input type="text" class="sort-text" id="img" value="" />-->
+                    <div id="imgs">
+                        <!--<img id="img" class="admin-list-img-size img" src=""/>-->
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" id="saveimg" class="btn btn-primary">保存图片</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.modal-content -->
+
+    <div class="box-body table-responsive">
+        <table id="datalist" class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>餐厅名称</th>
+                <th>页面名称</th>
+                <th>菜品名称</th>
+                <th>价格</th>
+                <th>内容</th>
+                <th>图片url</th>
+                <th>分类</th>
+                <th>元素类型</th>
+                <th>排序</th>
+                <th>状态</th>
+                <th>创建时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+
+            {notempty name='list'}
+            <tbody>
+            {volist name='list' id='vo'}
+            <tr data-id="{$vo.id}">
+                <td>{$vo.scene_name}</td>
+                <td>{$vo.page_name}</td>
+                <td><input type="text" class="data-text dishname" size="14" name="dish_name" value="{$vo.dish_name}" /></td>
+                <td><input type="text" class="data-text" size="14" name="price_name" value="{$vo.price_name}" /></td>
+                <td><input type="text" class="data-text" size="14" name="content" value="{$vo.content}" /></td>
+                <!--<td><img class="admin-list-img-size" src="{$vo.pic_url}" /></td>-->
+                <td><img class="admin-list-img-size" src="{$vo.pic_id|get_picture_url}"/></td>
+                <td>{$vo.pid}</td>
+                <td>{$vo.type|check_type}</td>
+                <td><input type="text" class="data-text" size="1" name="sort" value="{$vo.sort}" /></td>
+                <td><ob_link><a class="ajax-get" href="{:url('setDataStatus', array('ids' => $vo['id'], 'status' => (int)!$vo['status']))}">{$vo.status_text}</a></ob_link></td>
+                <td>{$vo.create_time}</td>
+                <td class="col-md-2 text-center">
+                    <ob_link><a class="btn addimg" name="{$vo.dish_name}" {if condition="$vo.type neq 2"} style="display: none;" {/if} ><i class="fa fa-plus"></i> 图片</a></ob_link>
+
+                    <ob_link><a class="btn confirm ajax-get"  href="{:url('sceneDataDel', ['scene_id'=>$data['scene_id'], 'page_id'=>$data['page_id'], 'pid'=>$data['pid'], 'id'=>$vo.id])}"><i class="fa fa-trash-o"></i> 删 除</a></ob_link>
+                </td>
+            </tr>
+            {/volist}
+            </tbody>
+            {else/}
+            <tbody><tr class="odd"><td colspan="8" class="text-center" valign="top">{:config('empty_list_describe')}</td></tr></tbody>
+            {/notempty}
+        </table>
+    </div>
+
+    <div class="box-footer clearfix text-center">
+        {$list->render()}
+    </div>
+
+</div>
+<script src="__STATIC__/module/admin/js/scene_data_list.js"></script>

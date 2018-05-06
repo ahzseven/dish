@@ -1,0 +1,54 @@
+<div class="box">
+    <div class="box-header ">
+
+        <ob_link><a class="btn" href="{:url('scenePageAdd', ['scene_id'=>$scene_id, 'uid'=>$uid])}"><i class="fa fa-plus"></i> 当前菜单新 增页面</a></ob_link>
+
+        <br/>
+    </div>
+
+    <div class="box-body table-responsive">
+        <table  class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>菜单名称</th>
+                <th>客户</th>
+                <th>页面名称</th>
+                <th>标题分类数量</th>
+                <th>模板</th>
+                <th>状态</th>
+                <th>创建时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+
+            {notempty name='list'}
+            <tbody>
+            {volist name='list' id='vo'}
+            <tr>
+                <td>{$vo.scene_name}</td>
+                <td>{$vo.cname}</td>
+                <td>{$vo.name}</td>
+                <td>{$vo.category_num}</td>
+                <td>{$vo.tpl_id}</td>
+                <td><ob_link><a class="ajax-get" href="{:url('setPageStatus', array('ids' => $vo['id'], 'status' => (int)!$vo['status']))}">{$vo.status_text}</a></ob_link></td>
+                <td>{$vo.create_time}</td>
+                <td class="col-md-3 text-center">
+                    <ob_link><a href="{:url('sceneCategoryList', array('page_id' => $vo['id'], 'scene_id' => $vo['scene_id']))}" class="btn"><i class="fa fa-edit"></i> 页面分类</a></ob_link>
+                    <ob_link><a href="{:url('scenePageEdit', array('id' => $vo['id'],'scene_id'=>$scene_id, 'uid'=>$uid))}" class="btn"><i class="fa fa-edit"></i> 编 辑</a></ob_link>
+                    &nbsp;
+                    <ob_link><a class="btn confirm ajax-get"  href="{:url('scenePageDel', array('id' => $vo['id'], 'scene_id'=>$scene_id, 'uid'=>$uid))}"><i class="fa fa-trash-o"></i> 删 除</a></ob_link>
+                </td>
+            </tr>
+            {/volist}
+            </tbody>
+            {else/}
+            <tbody><tr class="odd"><td colspan="8" class="text-center" valign="top">{:config('empty_list_describe')}</td></tr></tbody>
+            {/notempty}
+        </table>
+    </div>
+
+    <div class="box-footer clearfix text-center">
+        {$list->render()}
+    </div>
+
+</div>

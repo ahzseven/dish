@@ -1,0 +1,72 @@
+<form action="{:url('customerAdd', ['id'=>$info.id])}" method="post" class="form_single">
+    <div class="box">
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>客户姓名 *</label>
+                        <span>（客户姓名用于填写快递单）</span>
+                        <input class="form-control" name="name" placeholder="请输入客户姓名" type="text" value="{$info.name}">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>餐馆店名 *</label>
+                        <span>（餐馆名称）</span>
+                        <input class="form-control" name="restaurant" placeholder="请输入餐馆名称" type="text" value="{$info.restaurant}">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>餐馆地址 *</label>
+                        <span>（餐馆详细地址）</span>
+                        <input class="form-control" name="address" placeholder="请输入餐馆详细地址" type="text" value="{$info.address}">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>手机 *</label>
+                        <span>（用于安全操作）</span>
+                        <input class="form-control" name="mobile" placeholder="请输入手机" type="text" value="{$info.mobile}">
+                    </div>
+                </div>
+
+                <!--<div class="col-md-6">-->
+                    <!--<div class="form-group">-->
+                        <!--<label>性别</label>-->
+                        <!--<span>（用于安全操作）</span>-->
+                        <!--<input class="form-control" name="mobil" placeholder="请输入手机" type="text">-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="col-md-6">-->
+                    <!--<div class="form-group">-->
+                        <!--<label>年龄</label>-->
+                        <!--<span>（用于安全操作）</span>-->
+                        <!--<input class="form-control" name="mobil" placeholder="请输入手机" type="text">-->
+                    <!--</div>-->
+                <!--</div>-->
+
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>是否共享会员</label>
+                        <span>（若选择共享会员自己的会员则会继承给添加的会员）</span>
+                        <div>
+                            <label class="margin-r-5"><input type="radio" name="is_share_member" value="1" {notempty name="info['category_id']"}{if condition="$info['is_share_member'] eq 1"} selected="selected" {/if}{/notempty} > 是</label>
+                            <label><input type="radio" checked="checked" name="is_share_member"  value="0" {notempty name="info['category_id']"}{if condition="$info['is_share_member'] eq 0"} selected="selected" {/if}{/notempty} > 否</label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="box-footer">
+
+            {include file="layout/edit_btn_group"/}
+        </div>
+    </div>
+</form>

@@ -1,0 +1,63 @@
+<div class="box">
+    <div class="box-header ">
+
+        <ob_link><a id="category-add" class="btn" href="{:url('sceneCategoryAdd', ['scene_id'=>$ids.scene_id, 'page_id'=>$ids.page_id])}"><i class="fa fa-plus"></i> 当前菜单新 增页面</a></ob_link>
+
+        <br/>
+    </div>
+
+    <div class="box-body table-responsive">
+        <table  class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>店名</th>
+                <th>页面名称</th>
+                <th>分类名称</th>
+                <th>状态</th>
+                <th>创建时间</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+
+            {notempty name='list'}
+            <tbody>
+            {volist name='list' id='vo'}
+            <tr>
+                <td>{$vo.title}</td>
+                <td>{$vo.pname}</td>
+                <td>{$vo.name}</td>
+                <td><ob_link><a class="ajax-get" href="{:url('setDataStatus', array('ids' => $vo['id'], 'status' => (int)!$vo['status']))}">{$vo.status}</a></ob_link></td>
+                <td>{$vo.create_time}</td>
+                <td class="col-md-3 text-center">
+                    <ob_link><a href="{:url('sceneDataList', array('page_id' => $vo['page_id'], 'scene_id' => $vo['scene_id'], 'pid'=>$vo.id))}" class="btn"><i class="fa fa-edit"></i> 所有菜品</a></ob_link>
+                    <ob_link><a href="{:url('sceneCategoryEdit', ['id'=>$vo['id'],'scene_id'=>$vo.scene_id, 'page_id'=>$vo.page_id])}" class="btn"><i class="fa fa-edit"></i> 编 辑</a></ob_link>
+                    &nbsp;
+                    <ob_link><a class="btn confirm ajax-get"  href="{:url('sceneDataDel', ['id'=>$vo['id'],'scene_id'=>$vo.scene_id, 'page_id'=>$vo.page_id])}"><i class="fa fa-trash-o"></i> 删 除</a></ob_link>
+                </td>
+            </tr>
+            {/volist}
+            </tbody>
+            {else/}
+            <tbody><tr class="odd"><td colspan="8" class="text-center" valign="top">{:config('empty_list_describe')}</td></tr></tbody>
+            {/notempty}
+        </table>
+    </div>
+
+    <div class="box-footer clearfix text-center">
+        {$list->render()}
+    </div>
+
+</div>
+<script>
+    // 分类 >= 4 隐藏新增按钮
+    $(function () {
+        var t = $("table").find('tr').length;
+//        console.log(t);
+        if (t >= 4){
+            $("#category-add").hide();
+        } else {
+            $("#category-add").show();
+        }
+
+    })
+</script>
